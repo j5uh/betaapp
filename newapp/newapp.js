@@ -1,23 +1,16 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+if(Meteor.isClient){
+  Template.takePhoto.events({
+    'click .capture': function(){
+      MeteorCamera.getPicture({}, function(error, data){
+        Session.set('photo', data);
+      });
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.takePhoto.helpers({
+    'photo': function(){
+      return Session.get('photo');
     }
   });
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}

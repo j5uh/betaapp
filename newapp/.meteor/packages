@@ -10,3 +10,5 @@ insecure
 bootstrap
 jquery
 swiper:swiper
+mdg:geolocation
+mdg:camera
